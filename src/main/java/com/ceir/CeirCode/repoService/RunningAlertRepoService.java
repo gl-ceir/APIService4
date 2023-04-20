@@ -3,9 +3,9 @@ package com.ceir.CeirCode.repoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ceir.CeirCode.model.AlertDb;
-import com.ceir.CeirCode.model.RunningAlertDb;
-import com.ceir.CeirCode.repo.RunningAlertDbRepo;
+import com.ceir.CeirCode.model.app.AlertDb;
+import com.ceir.CeirCode.model.app.RunningAlertDb;
+import com.ceir.CeirCode.repo.app.RunningAlertDbRepo;
 
 
 @Service

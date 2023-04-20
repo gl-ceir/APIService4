@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ceir.CeirCode.model.SlaReport;
-import com.ceir.CeirCode.repo.SlaRepo;
+import com.ceir.CeirCode.model.app.SlaReport;
+import com.ceir.CeirCode.repo.app.SlaRepo;
 @Service
 public class SlaRepoService {
 

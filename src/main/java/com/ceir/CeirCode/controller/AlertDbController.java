@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ceir.CeirCode.filtermodel.AlertDbFilter;
-import com.ceir.CeirCode.model.AlertDb;
-import com.ceir.CeirCode.model.AllRequest;
-import com.ceir.CeirCode.model.FileDetails;
-import com.ceir.CeirCode.repo.SystemConfigDbListRepository;
+import com.ceir.CeirCode.model.app.AlertDb;
+import com.ceir.CeirCode.model.app.AllRequest;
+import com.ceir.CeirCode.model.app.FileDetails;
+import com.ceir.CeirCode.repo.app.SystemConfigDbListRepository;
 import com.ceir.CeirCode.service.AlertDbService;
 import com.ceir.CeirCode.util.HttpResponse;
 

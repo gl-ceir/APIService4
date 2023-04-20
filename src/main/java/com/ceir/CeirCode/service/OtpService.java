@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ceir.CeirCode.model.EmailDetails;
+import com.ceir.CeirCode.model.app.EmailDetails;
 import com.ceir.CeirCode.util.HttpClient;
 @Service
 public class OtpService {

@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ceir.CeirCode.model.Currency;
-import com.ceir.CeirCode.model.PortAddress;
-import com.ceir.CeirCode.repo.CurrencyRepo;
+import com.ceir.CeirCode.model.app.Currency;
+import com.ceir.CeirCode.model.app.PortAddress;
+import com.ceir.CeirCode.repo.app.CurrencyRepo;
 
 @Service
 public class CurrencyRepoService {

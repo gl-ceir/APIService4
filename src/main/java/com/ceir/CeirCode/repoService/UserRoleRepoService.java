@@ -9,8 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ceir.CeirCode.model.Userrole;
-import com.ceir.CeirCode.repo.UserRoleRepo;
+import com.ceir.CeirCode.model.app.Userrole;
+import com.ceir.CeirCode.repo.app.UserRoleRepo;
 
 @Service
 public class UserRoleRepoService {

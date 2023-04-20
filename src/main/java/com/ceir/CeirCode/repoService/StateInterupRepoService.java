@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ceir.CeirCode.model.StatesInterpretationDb;
-import com.ceir.CeirCode.repo.StatesInterpretaionRepository;
+import com.ceir.CeirCode.model.app.StatesInterpretationDb;
+import com.ceir.CeirCode.repo.app.StatesInterpretaionRepository;
 
 
 @Service

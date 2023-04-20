@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.ceir.CeirCode.filtermodel.CurrencyFilter;
-import com.ceir.CeirCode.model.AllRequest;
-import com.ceir.CeirCode.model.Currency;
-import com.ceir.CeirCode.model.FileDetails;
-import com.ceir.CeirCode.model.SystemConfigListDb;
-import com.ceir.CeirCode.repo.SystemConfigDbListRepository;
+import com.ceir.CeirCode.model.app.AllRequest;
+import com.ceir.CeirCode.model.app.Currency;
+import com.ceir.CeirCode.model.app.FileDetails;
+import com.ceir.CeirCode.model.app.SystemConfigListDb;
+import com.ceir.CeirCode.repo.app.SystemConfigDbListRepository;
 import com.ceir.CeirCode.service.CurrencyService;
 import com.ceir.CeirCode.util.Utility;
 

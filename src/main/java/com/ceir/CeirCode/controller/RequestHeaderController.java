@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ceir.CeirCode.filtermodel.AlertDbFilter;
 import com.ceir.CeirCode.filtermodel.ReqHeaderFilter;
-import com.ceir.CeirCode.model.AlertDb;
-import com.ceir.CeirCode.model.FileDetails;
-import com.ceir.CeirCode.model.RequestHeaders;
+import com.ceir.CeirCode.model.app.AlertDb;
+import com.ceir.CeirCode.model.app.FileDetails;
+import com.ceir.CeirCode.model.app.RequestHeaders;
 import com.ceir.CeirCode.service.ReqHeadersService;
 
 import io.swagger.annotations.ApiOperation;

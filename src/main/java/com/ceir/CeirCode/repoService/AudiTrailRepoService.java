@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ceir.CeirCode.model.AuditTrail;
-import com.ceir.CeirCode.repo.AuditTrailRepo;
+import com.ceir.CeirCode.model.app.AuditTrail;
+import com.ceir.CeirCode.repo.app.AuditTrailRepo;
 @Service
 public class AudiTrailRepoService {
 

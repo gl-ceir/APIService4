@@ -4,9 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ceir.CeirCode.model.AlertDb;
-import com.ceir.CeirCode.model.PortAddress;
-import com.ceir.CeirCode.repo.AlertDbRepo;
+import com.ceir.CeirCode.model.app.AlertDb;
+import com.ceir.CeirCode.model.app.PortAddress;
+import com.ceir.CeirCode.repo.app.AlertDbRepo;
 
 @Service
 public class AlertRepoService {

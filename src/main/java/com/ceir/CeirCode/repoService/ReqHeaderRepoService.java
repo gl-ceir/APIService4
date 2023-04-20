@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ceir.CeirCode.model.RequestHeaders;
-import com.ceir.CeirCode.repo.ReqHeadersRepo;
+import com.ceir.CeirCode.model.app.RequestHeaders;
+import com.ceir.CeirCode.repo.app.ReqHeadersRepo;
 
 @Service
 public class ReqHeaderRepoService {
