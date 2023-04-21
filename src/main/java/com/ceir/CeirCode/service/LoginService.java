@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
 import com.ceir.CeirCode.model.ChangeLanguage;
@@ -54,6 +56,10 @@ import com.ceir.CeirCode.util.GenerateRandomDigits;
 import com.ceir.CeirCode.util.HttpResponse;
 import com.ceir.CeirCode.util.NotificationUtil;
 import com.ceir.CeirCode.util.Utility;
+import com.ceir.CeirCode.model.Token;
+import com.ceir.CeirCode.model.TokenType;
+import com.ceir.CeirCode.repo.TokenRepository;
+import com.ceir.CeirCode.service.JwtServiceImpl;
 @Service 
 public class LoginService 
 {
@@ -113,6 +119,16 @@ public class LoginService
 
 	@Autowired
 	UsertypeRepo usertypeRepo;
+	
+	@Autowired
+	TokenRepository tokenRepository;
+	
+	@Autowired
+	JwtServiceImpl jwtService;
+	
+	@Autowired
+	AuthenticationManager authenticationManager;
+	
 	public ResponseEntity<?> userLogin(UserLogin userLogin)
 	{
 		try 
@@ -219,12 +235,23 @@ public class LoginService
 						if(stateInterup.getInterp()!=null) {
 							status=stateInterup.getInterp();  	
 						}
+						authenticationManager.authenticate(
+					        new UsernamePasswordAuthenticationToken(
+					        		UserData.getUsername(),
+					        		UserData.getPassword()
+					        )
+					    );
+						String jwtToken = jwtService.generateToken(UserData);
+						log.info("Token for user ["+UserData.getUsername()+"] is ["+jwtToken+"]");
+					    this.revokeAllUserTokens(UserData);
+					    this.saveUserToken(UserData, jwtToken);
 						LoginResponse response=new LoginResponse("user credentials are correct",200,
 								userRoles, UserData.getUsername(), UserData.getId(), UserData.getUserProfile().getFirstName(),
 								UserData.getUsertype().getUsertypeName(), UserData.getUsertype().getId(), 
 								status,UserData.getUserProfile().getOperatorTypeName(),
 								UserData.getUserProfile().getOperatorTypeId(), UserData.getUserLanguage(),
 								periodInterp,UserData.getCurrentStatus(),UserData.getUsertype().getSelfRegister(),UserData.getUsertype().getDefaultLink());  
+						response.setToken(jwtToken);
 						log.info("login response:  "+response);
 						return new ResponseEntity<>(response,HttpStatus.OK);
 					}
@@ -262,8 +289,26 @@ public class LoginService
 		}
 	}
 	
-	
-	
+	private void saveUserToken(User user, String jwtToken) {
+		  Token token = new Token();
+		  token.setUser(user);
+		  token.setToken(jwtToken);
+		  token.setTokenType(TokenType.BEARER);
+		  token.setExpired(false);
+		  token.setRevoked(false);
+		  tokenRepository.save(token);
+	  }
+
+	  private void revokeAllUserTokens(User user) {
+	    List<Token> validUserTokens = tokenRepository.findAllValidTokenByUser(user.getId());
+	    if (validUserTokens.isEmpty())
+	    	return;
+	    validUserTokens.forEach(token -> {
+	    	token.setExpired(true);
+	    	token.setRevoked(true);
+	    });
+	    tokenRepository.saveAll(validUserTokens);
+	  }
 	
 	
 	public ResponseEntity<?> testUserLogin(UserLogin userLogin)
@@ -338,13 +383,23 @@ public class LoginService
 						if(stateInterup.getInterp()!=null) {
 							status=stateInterup.getInterp();  	
 						}
+						authenticationManager.authenticate(
+					        new UsernamePasswordAuthenticationToken(
+					        		UserData.getUsername(),
+					        		UserData.getPassword()
+					        )
+					    );
+						String jwtToken = jwtService.generateToken(UserData);
+						log.info("Token for user ["+UserData.getUsername()+"] is ["+jwtToken+"]");
+					    this.revokeAllUserTokens(UserData);
+					    this.saveUserToken(UserData, jwtToken);
 						LoginResponse response=new LoginResponse("user credentials are correct",200,
 								userRoles, UserData.getUsername(), UserData.getId(), UserData.getUserProfile().getFirstName(),
 								UserData.getUsertype().getUsertypeName(), UserData.getUsertype().getId(), 
 								status,UserData.getUserProfile().getOperatorTypeName(),
 								UserData.getUserProfile().getOperatorTypeId(), UserData.getUserLanguage(),
 								periodInterp,UserData.getCurrentStatus(),UserData.getPassword(),userTypeList.getSelfRegister());  
-						
+						response.setToken(jwtToken);
 						log.info("login response:  "+response);
 						return new ResponseEntity<>(response,HttpStatus.OK);
 					}

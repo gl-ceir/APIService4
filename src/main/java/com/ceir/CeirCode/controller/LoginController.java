@@ -50,7 +50,6 @@ public class LoginController{
 	@CrossOrigin
 	@PostMapping("/checkUser")     
 	public ResponseEntity<?> userLogin(@RequestBody UserLogin user){
-		
 		return loginService.userLogin(user); 
 	}  
 	
@@ -63,9 +62,7 @@ public class LoginController{
 			userService.saveUserTrail(UserData, "User Management","Login",41,userLogin.getPublicIp(),userLogin.getBrowser());
 			return reponse;
 		
-	}  
-	
-	
+	}
 
 	@ApiOperation(value = "user test Login", response = HttpResponse.class)
 	@CrossOrigin

@@ -9,10 +9,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
+
 @EnableJpaAuditing
 @SpringBootApplication	
 @EnableAutoConfiguration	
 @ComponentScan("com.ceir.CeirCode")
+@EnableEncryptableProperties
 public class App { 
 	public static void main(String[] args) {
 		System.out.println("inside main class");

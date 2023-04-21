@@ -18,6 +18,7 @@ public class LoginResponse {
 	private String period;
 	private Integer selfRegister;
 	private String defaultLink;
+	private String token;
 	
 	public String getStatus() {
 		return status;
@@ -129,6 +130,13 @@ public class LoginResponse {
 	}
 	public void setDefaultLink(String defaultLink) {
 		this.defaultLink = defaultLink;
+	}
+	
+	public String getToken() {
+		return token;
+	}
+	public void setToken(String token) {
+		this.token = token;
 	}
 	public LoginResponse(String response, Integer statusCode, List<Usertype> userRoles, String username, long userId,
 			String name, String primaryRole, long primaryRoleId, String status, String operatorTypeName,
