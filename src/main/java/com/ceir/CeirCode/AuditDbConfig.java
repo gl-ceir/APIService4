@@ -18,13 +18,15 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy;
 import org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy;
+import org.springframework.data.envers.repository.support.EnversRevisionRepositoryFactoryBean;
 
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
         basePackages = {"com.ceir.CeirCode.repo.audit"},  // 
         entityManagerFactoryRef = "auditEntityManagerFactory",
-        transactionManagerRef = "auditTransactionManager" )
+        transactionManagerRef = "auditTransactionManager" ,
+        repositoryFactoryBeanClass = EnversRevisionRepositoryFactoryBean.class)
 
 @EntityScan( "com.ceir.CeirCode.model.audit" )
 

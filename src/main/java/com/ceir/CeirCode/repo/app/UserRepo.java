@@ -27,11 +27,11 @@ public interface UserRepo extends JpaRepository<User, Long> ,JpaSpecificationExe
 	
 	@Transactional
 	@Modifying
-	@Query(value="update users  set MODIFIED_ON = CURRENT_TIMESTAMP, current_Status = :currentStatus ,previous_status = :previousStatus where username = :username",nativeQuery = true)
+	@Query(value="update user  set MODIFIED_ON = CURRENT_TIMESTAMP, current_Status = :currentStatus ,previous_status = :previousStatus where username = :username",nativeQuery = true)
 	public int setStatusForUser(int currentStatus, int previousStatus,String username);
 	
 	@Transactional
 	@Modifying
-	@Query(value="update users  set MODIFIED_ON = CURRENT_TIMESTAMP, current_Status = :currentStatus ,previous_status = :previousStatus where id = :id",nativeQuery = true)
+	@Query(value="update user  set MODIFIED_ON = CURRENT_TIMESTAMP, current_Status = :currentStatus ,previous_status = :previousStatus where id = :id",nativeQuery = true)
 	public int setStatusForUser(int currentStatus, int previousStatus,long id);
 }

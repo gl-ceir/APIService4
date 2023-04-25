@@ -1,4 +1,4 @@
-package com.ceir.CeirCode.model.app;
+package com.ceir.CeirCode.model.oam;
 
 import java.time.LocalDateTime;
 
@@ -14,8 +14,11 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import javax.persistence.Table;
 
 @Entity
+ @Table(name = "portal_access_log")
+
 public class RequestHeaders {
 
 	@Id
@@ -34,7 +37,8 @@ public class RequestHeaders {
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm")
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime modifiedOn;
-	private String username;
+        @Column(name="user_name")
+        private String username;
 	private String browser;
 	
 	@Transient

@@ -14,8 +14,11 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import javax.persistence.Table;
 
 @Entity
+  @Table(name="sys_generated_alert")
+
 public class RunningAlertDb implements Serializable {
 
 	private static final long serialVersionUID = 1L;

@@ -15,9 +15,12 @@ import org.hibernate.envers.Audited;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.Table;
 
 @Entity
 @Audited
+  @Table(name="sys_param_list_value")
+
 public class SystemConfigListDb implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -42,6 +45,7 @@ public class SystemConfigListDb implements Serializable {
 	
 	private Integer value;
 	
+                   @Column(name = "interpretation")
 	private String interp;
 	
 	private Integer listOrder;

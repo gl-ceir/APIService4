@@ -2,6 +2,7 @@ package com.ceir.CeirCode.model.app;
 
 import javax.persistence.Transient;
 
+
 public class UserMgmtRequest {
 	
 	@Transient

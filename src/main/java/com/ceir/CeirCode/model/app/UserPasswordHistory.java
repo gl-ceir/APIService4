@@ -1,5 +1,6 @@
 package com.ceir.CeirCode.model.app;
 
+import com.ceir.CeirCode.model.app.User;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -16,8 +17,11 @@ import org.hibernate.envers.Audited;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import javax.persistence.Table;
 @Entity
 @Audited
+ @Table(name = "user_old_pwd_his")
+
 public class UserPasswordHistory {
 	private static long serialVersionUID = 1L;
 	@Id

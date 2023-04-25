@@ -21,8 +21,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.ceir.CeirCode.util.Utility;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.Table;
 @Entity
 @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
+  @Table(name="user_pwd_security_question")
+
 public class Securityquestion {
 	private static long serialVersionUID = 1L;
 	@Id    

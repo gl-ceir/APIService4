@@ -16,8 +16,11 @@ import org.hibernate.annotations.UpdateTimestamp;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import io.swagger.annotations.ApiModel;
+import javax.persistence.Table;
 @ApiModel
 @Entity
+  @Table(name="feature_rule")
+
 public class RuleEngineMapping {
 	private static final long serialVersionUID = 1L;
 

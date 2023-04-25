@@ -20,9 +20,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.Table;
 
 @Entity
 @Audited
+ @Table(name = "user_feature")
+
 public class UserToStakehoderfeatureMapping {
 
 	@Id       
@@ -49,7 +52,7 @@ public class UserToStakehoderfeatureMapping {
 	
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL, optional = false)
-	@JoinColumn(name = "usertype_id", nullable = false) 
+	@JoinColumn(name = "user_type_id", nullable = false) 
 	private Usertype userTypeFeature; 
 
 	

@@ -16,8 +16,8 @@ import com.ceir.CeirCode.SpecificationBuilder.GenericSpecificationBuilder;
 import com.ceir.CeirCode.configuration.PropertiesReaders;
 import com.ceir.CeirCode.filtermodel.LoginReportFilter;
 import com.ceir.CeirCode.model.app.SearchCriteria;
-import com.ceir.CeirCode.model.app.UserLoginReport;
-import com.ceir.CeirCode.repo.app.LoginReportRepo;
+import com.ceir.CeirCode.model.report.UserLoginReport;
+import com.ceir.CeirCode.repo.report.LoginReportRepo;
 @Service
 public class ReportService {
 

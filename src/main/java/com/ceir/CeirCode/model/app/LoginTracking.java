@@ -17,8 +17,11 @@ import org.hibernate.envers.NotAudited;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import javax.persistence.Table;
 @Entity 
 @Audited
+@Table(name = "user_login_status")
+
 public class LoginTracking {
 	private static long serialVersionUID = 1L;
 	@Id       

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.ceir.CeirCode.filtermodel.LoginReportFilter;
-import com.ceir.CeirCode.model.app.UserLoginReport;
+import com.ceir.CeirCode.model.report.UserLoginReport;
 import com.ceir.CeirCode.service.ReportService;
 
 @RestController

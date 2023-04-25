@@ -14,7 +14,7 @@ import com.ceir.CeirCode.filtermodel.AlertDbFilter;
 import com.ceir.CeirCode.filtermodel.ReqHeaderFilter;
 import com.ceir.CeirCode.model.app.AlertDb;
 import com.ceir.CeirCode.model.app.FileDetails;
-import com.ceir.CeirCode.model.app.RequestHeaders;
+import com.ceir.CeirCode.model.oam.RequestHeaders;
 import com.ceir.CeirCode.service.ReqHeadersService;
 
 import io.swagger.annotations.ApiOperation;

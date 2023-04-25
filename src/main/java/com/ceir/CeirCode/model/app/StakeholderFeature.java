@@ -16,8 +16,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.Table;
 
 @Entity
+  @Table(name="feature_list")
+
 public class StakeholderFeature {
 	
 	private static long serialVersionUID = 1L;

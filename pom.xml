@@ -18,15 +18,8 @@
         <relativePath />
     </parent>
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-        <spring.boot.version>2.1.4.RELEASE</spring.boot.version>
-        <!-- 		<spring.version>5.0.8.RELEASE</spring.version> -->
+        <java.version>11</java.version>
         <start-class>com.ceir.CeirCode.App</start-class>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <spring-cloud.version>Finchley.SR4</spring-cloud.version>
     </properties>
 
     <dependencies>
@@ -36,14 +29,13 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
       
-<!--        <dependency>
+        <!--        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>-->
-        
-        
+         
       
-       <dependency>
+        <dependency>
             <groupId>javax.persistence</groupId>
             <artifactId>javax.persistence-api</artifactId>
             <version>2.2</version>
@@ -62,7 +54,7 @@
         </dependency>
     
      
-            <dependency>
+        <dependency>
             <groupId>jakarta.validation</groupId>
             <artifactId>jakarta.validation-api</artifactId>
             <version>2.0.2</version>
@@ -70,17 +62,21 @@
         </dependency>
         
         
-          <dependency>
+        <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-envers</artifactId>
         </dependency>
         
-         <dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         
         
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-envers</artifactId>
+        </dependency> 
           
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -88,91 +84,7 @@
             <version>5.4.12.Final</version>
             <type>jar</type>
         </dependency>
-        
-        <!-- <dependency> <groupId>com.gl.ceir</groupId> <artifactId>config</artifactId> 
-        <version>1.0.6</version> <classifier>import-lib</classifier> <scope>system</scope> 
-        <systemPath>D:\CEIR\ConfigJar\config-1.0.2.jar</systemPath> <exclusions> 
-        <exclusion> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-logging</artifactId> 
-        </exclusion> <exclusion> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-log4j2</artifactId> 
-        </exclusion> <exclusion> <groupId>org.slf4j</groupId> <artifactId>slf4j-log4j12</artifactId> 
-        </exclusion> <exclusion> <groupId>org.slf4j</groupId> <artifactId>slf4j-api</artifactId> 
-        </exclusion> <exclusion> <groupId>org.slf4j</groupId> <artifactId>slf4j-simple</artifactId> 
-        </exclusion> <exclusion> <artifactId>tomcat-embed-el</artifactId> <groupId>org.apache.tomcat.embed</groupId> 
-        </exclusion> <exclusion> <artifactId>tomcat-embed-core</artifactId> <groupId>org.apache.tomcat.embed</groupId> 
-        </exclusion> <exclusion> <artifactId>tomcat-embed-websocket</artifactId> 
-        <groupId>org.apache.tomcat.embed</groupId> </exclusion> </exclusions> </dependency> -->
-
        
-
-        <!--		<dependency>
-                <groupId>com.oracle.ojdbc</groupId>
-                <artifactId>ojdbc8</artifactId>
-                <version>19.3.0.0</version>
-        </dependency>-->
-    
-        
-        <!--      <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-             <version>${spring.boot.version}</version> 
-        </dependency>
-        -->
-
-   
-        
-<!--        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>-->
-     
-      <!--        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <version>${spring.boot.version}</version>
-        </dependency>-->
-        
-<!--        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-             <version>4.5.3</version> 
-        </dependency>-->
-
-        <!--        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-             <version>${spring.version}</version> 
-        </dependency>-->
-        
-        
-        <!--        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-autoconfigure</artifactId>
-             <version>2.0.4.RELEASE</version> 
-        </dependency>-->
-
-<!--        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-        </dependency>-->
-        
-<!--        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-        </dependency>-->
-
-        <!-- <dependency> <groupId>com.fasterxml.jackson.core</groupId> <artifactId>jackson-annotations</artifactId> 
-        <version>2.9.1</version> </dependency> -->
-
-        
-		
-<!--         https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api 
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>2.3.0-b170201.1204</version>
-        </dependency>-->
-
-        <!-- https://mvnrepository.com/artifact/javax.activation/activation -->
         <dependency>
             <groupId>javax.activation</groupId>
             <artifactId>activation</artifactId>
@@ -192,7 +104,7 @@
         <!-- <dependency> <groupId>mysql</groupId> <artifactId>mysql-connector-java</artifactId> 
         <scope>runtime</scope> </dependency> -->
 
-<!--        <dependency>
+        <!--        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
              <version>${spring.version}</version> 
@@ -227,7 +139,7 @@
             <artifactId>jstl</artifactId>
         </dependency>
     
-<!--        <dependency>
+        <!--        <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
@@ -264,46 +176,141 @@
             <artifactId>opencsv</artifactId>
             <version>5.0</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-envers -->
-        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-envers -->
-
-      
- 
-        <!-- <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency> -->
+     
     </dependencies> 
-	
-    <!-- <dependencyManagement>
-            <dependencies>
-                    <dependency>
-                            <groupId>org.springframework.cloud</groupId>
-                            <artifactId>spring-cloud-dependencies</artifactId>
-                            <version>${spring-cloud.version}</version>
-                            <type>pom</type>
-                            <scope>import</scope>
-                    </dependency>
-            </dependencies>
-    </dependencyManagement> -->
+
     <build>
-
-        <finalName>${artifactId}-${version}</finalName>
-
-        <!-- 		<finalName>${artifactId}-${version}_Test</finalName> -->
-
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-
+        <finalName>apiservice4</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+    
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <classifier>import-lib</classifier>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>
+
+
+<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-envers -->
+<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-envers -->
+
+      
+ 
+<!-- <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-openfeign</artifactId>
+</dependency> -->
+	
+<!-- <dependencyManagement>
+        <dependencies>
+                <dependency>
+                        <groupId>org.springframework.cloud</groupId>
+                        <artifactId>spring-cloud-dependencies</artifactId>
+                        <version>${spring-cloud.version}</version>
+                        <type>pom</type>
+                        <scope>import</scope>
+                </dependency>
+        </dependencies>
+</dependencyManagement> -->
+ 
+<!-- <dependency> <groupId>com.gl.ceir</groupId> <artifactId>config</artifactId> 
+<version>1.0.6</version> <classifier>import-lib</classifier> <scope>system</scope> 
+<systemPath>D:\CEIR\ConfigJar\config-1.0.2.jar</systemPath> <exclusions> 
+<exclusion> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-logging</artifactId> 
+</exclusion> <exclusion> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-log4j2</artifactId> 
+</exclusion> <exclusion> <groupId>org.slf4j</groupId> <artifactId>slf4j-log4j12</artifactId> 
+</exclusion> <exclusion> <groupId>org.slf4j</groupId> <artifactId>slf4j-api</artifactId> 
+</exclusion> <exclusion> <groupId>org.slf4j</groupId> <artifactId>slf4j-simple</artifactId> 
+</exclusion> <exclusion> <artifactId>tomcat-embed-el</artifactId> <groupId>org.apache.tomcat.embed</groupId> 
+</exclusion> <exclusion> <artifactId>tomcat-embed-core</artifactId> <groupId>org.apache.tomcat.embed</groupId> 
+</exclusion> <exclusion> <artifactId>tomcat-embed-websocket</artifactId> 
+<groupId>org.apache.tomcat.embed</groupId> </exclusion> </exclusions> </dependency> -->
+
+       
+
+<!--		<dependency>
+        <groupId>com.oracle.ojdbc</groupId>
+        <artifactId>ojdbc8</artifactId>
+        <version>19.3.0.0</version>
+</dependency>-->
+    
+        
+<!--      <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-tomcat</artifactId>
+     <version>${spring.boot.version}</version> 
+</dependency>
+-->
+
+   
+        
+<!--        <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-jdbc</artifactId>
+</dependency>-->
+     
+<!--        <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+    <version>${spring.boot.version}</version>
+</dependency>-->
+        
+<!--        <dependency>
+    <groupId>org.apache.httpcomponents</groupId>
+    <artifactId>httpclient</artifactId>
+     <version>4.5.3</version> 
+</dependency>-->
+
+<!--        <dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-web</artifactId>
+     <version>${spring.version}</version> 
+</dependency>-->
+        
+        
+<!--        <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-autoconfigure</artifactId>
+     <version>2.0.4.RELEASE</version> 
+</dependency>-->
+
+<!--        <dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+</dependency>-->
+        
+<!--        <dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-core</artifactId>
+</dependency>-->
+
+<!-- <dependency> <groupId>com.fasterxml.jackson.core</groupId> <artifactId>jackson-annotations</artifactId> 
+<version>2.9.1</version> </dependency> -->
+
+        
+		
+<!--         https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api 
+<dependency>
+    <groupId>javax.xml.bind</groupId>
+    <artifactId>jaxb-api</artifactId>
+    <version>2.3.0-b170201.1204</version>
+</dependency>-->
+
+<!-- https://mvnrepository.com/artifact/javax.activation/activation -->

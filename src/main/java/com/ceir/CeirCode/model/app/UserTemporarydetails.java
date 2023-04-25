@@ -1,9 +1,6 @@
 package com.ceir.CeirCode.model.app;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,8 +16,10 @@ import org.hibernate.envers.Audited;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import javax.persistence.Table;
 @Entity
 @Audited
+ @Table(name = "user_otp")
 public class UserTemporarydetails {
 	private static long serialVersionUID = 1L;
 	@Id

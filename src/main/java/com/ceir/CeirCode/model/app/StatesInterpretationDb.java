@@ -2,17 +2,21 @@ package com.ceir.CeirCode.model.app;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import javax.persistence.Column;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
+  @Table(name="feature_state_interpretation")
+
 public class StatesInterpretationDb implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -33,6 +37,7 @@ public class StatesInterpretationDb implements Serializable {
 	@NotNull
 	private Integer state;
 	
+        @Column(name = "interpretation")
 	private String interp;
 
 	public Long getId() {
@@ -87,21 +92,13 @@ public class StatesInterpretationDb implements Serializable {
 		this.interp = interp;
 	}
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("StateMgmtDb [id=");
-		builder.append(id);
-		builder.append(", createdOn=");
-		builder.append(createdOn);
-		builder.append(", modifiedOn=");
-		builder.append(modifiedOn);
-		builder.append(", featureId=");
-		builder.append(featureId);
-		builder.append(", state=");
-		builder.append(state);
-		builder.append("]");
-		return builder.toString();
-	}
+    @Override
+    public String toString() {
+        return "StatesInterpretationDb{" + "id=" + id + ", createdOn=" + createdOn + ", modifiedOn=" + modifiedOn + ", featureId=" + featureId + ", state=" + state + ", interp=" + interp + '}';
+    }
+
+ 
+        
+        
 
 }

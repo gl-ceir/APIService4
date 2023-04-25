@@ -17,8 +17,11 @@ import org.hibernate.envers.NotAudited;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import javax.persistence.Table;
 @Entity
 @Audited
+ @Table(name = "user_role")
+
 public class Userrole {
 	private static long serialVersionUID = 1L;
 	@Id    
@@ -43,7 +46,7 @@ public class Userrole {
 	private User userData;
 	   
 	@ManyToOne 
-	@JoinColumn(name = "usertype_id",nullable = false) 
+	@JoinColumn(name = "user_type_id",nullable = false) 
 	private Usertype usertypeData; 
    
 	

@@ -35,7 +35,7 @@ import com.ceir.CeirCode.filtermodel.UsertypeFilter;
 import com.ceir.CeirCode.model.app.AllRequest;
 import com.ceir.CeirCode.model.app.Currency;
 import com.ceir.CeirCode.model.app.FileDetails;
-import com.ceir.CeirCode.model.app.RequestHeaders;
+import com.ceir.CeirCode.model.oam.RequestHeaders;
 import com.ceir.CeirCode.model.app.SearchCriteria;
 import com.ceir.CeirCode.model.app.SystemConfigListDb;
 import com.ceir.CeirCode.model.app.SystemConfigurationDb;

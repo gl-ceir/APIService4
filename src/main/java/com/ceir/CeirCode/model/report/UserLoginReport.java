@@ -1,4 +1,4 @@
-package com.ceir.CeirCode.model.app;
+package com.ceir.CeirCode.model.report;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -11,8 +11,11 @@ import javax.persistence.Id;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "user_login_daily_new_count")
+
 public class UserLoginReport {
 
 	private static long serialVersionUID = 1L;

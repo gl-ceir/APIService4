@@ -21,13 +21,15 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy;
 import org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.envers.repository.support.EnversRevisionRepositoryFactoryBean;
 
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
         basePackages = {"com.ceir.CeirCode.repo.app"},
         entityManagerFactoryRef = "appEntityManagerFactory",
-        transactionManagerRef = "appTransactionManager")
+        transactionManagerRef = "appTransactionManager",
+        repositoryFactoryBeanClass = EnversRevisionRepositoryFactoryBean.class)
 
 
 @EntityScan("com.ceir.CeirCode.model.app")
@@ -64,20 +66,6 @@ public class AppDbConfig {
         return DataSourceBuilder.create().build();
     }
 
-//    @Bean
-//    @ConfigurationProperties("spring.datasource")
-//    public DataSourceProperties appDataSourceProperties() {
-//        return new DataSourceProperties();
-//    }
-//
-//    
-//     @Primary
-//    @Bean(name = "appDataSource")
-//    public DataSource appDataSource() {
-//        return appDataSourceProperties()
-//                .initializeDataSourceBuilder()
-//                .build();
-//    }
     
     protected Map<String, Object> jpaProperties() {
         Map<String, Object> props = new HashMap<>();

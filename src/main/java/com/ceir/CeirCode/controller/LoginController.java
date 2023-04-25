@@ -15,7 +15,7 @@ import com.ceir.CeirCode.model.app.ChangeLanguage;
 import com.ceir.CeirCode.model.app.ForgotPassword;
 import com.ceir.CeirCode.model.app.LoginTracking;
 import com.ceir.CeirCode.model.app.NewPassword;
-import com.ceir.CeirCode.model.app.RequestHeaders;
+import com.ceir.CeirCode.model.oam.RequestHeaders;
 import com.ceir.CeirCode.model.app.User;
 import com.ceir.CeirCode.model.app.UserLogin;
 import com.ceir.CeirCode.repo.app.UserRepo;

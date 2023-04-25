@@ -17,6 +17,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import com.ceir.CeirCode.model.constants.NotificationStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
+
 public class Notification  implements Serializable{
 
 	private static final long serialVersionUID = 1L;

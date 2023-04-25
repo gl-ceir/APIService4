@@ -12,8 +12,11 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.lang.NonNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import javax.persistence.Table;
 
 @Entity
+  @Table(name="dashboard_users_feature_state")
+
 public class DashboardUsersFeatureStateMap {
 	private static final long serialVersionUID = 1L;
 

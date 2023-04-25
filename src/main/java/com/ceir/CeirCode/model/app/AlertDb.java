@@ -19,8 +19,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.Table;
 
 @Entity
+
+  @Table(name="cfg_feature_alert")
 public class AlertDb  extends AllRequest {
 
 	public AlertDb() {

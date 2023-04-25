@@ -29,7 +29,7 @@ import com.ceir.CeirCode.filemodel.SlaFile;
 import com.ceir.CeirCode.filtermodel.RunningAlertFilter;
 import com.ceir.CeirCode.filtermodel.SlaFilter;
 import com.ceir.CeirCode.model.app.FileDetails;
-import com.ceir.CeirCode.model.app.RequestHeaders;
+import com.ceir.CeirCode.model.oam.RequestHeaders;
 import com.ceir.CeirCode.model.app.RunningAlertDb;
 import com.ceir.CeirCode.model.app.SearchCriteria;
 import com.ceir.CeirCode.model.app.SlaReport;

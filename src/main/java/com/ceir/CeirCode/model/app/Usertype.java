@@ -19,12 +19,15 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.Table;
 @Entity 
 @Audited
-public class Usertype {   
+ @Table(name = "user_type")
+public class Usertype {
 
 	@Id 
 	private long id;
+        @Column(name="user_type_name")
 	private String usertypeName; 
 	
 	@Column(nullable =false)

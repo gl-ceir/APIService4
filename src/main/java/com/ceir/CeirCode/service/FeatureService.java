@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.ceir.CeirCode.configuration.PropertiesReaders;
 import com.ceir.CeirCode.model.app.PeriodValidate;
-import com.ceir.CeirCode.model.app.RequestHeaders;
+import com.ceir.CeirCode.model.oam.RequestHeaders;
 import com.ceir.CeirCode.model.app.StakeholderFeature;
 import com.ceir.CeirCode.model.app.SystemConfigurationDb;
 import com.ceir.CeirCode.model.app.User;
