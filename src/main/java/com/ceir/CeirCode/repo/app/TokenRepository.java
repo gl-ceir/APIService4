@@ -13,7 +13,7 @@ import com.ceir.CeirCode.model.app.Token;
 public interface TokenRepository extends JpaRepository<Token, Integer> {
 
 	@Query(value="select t from Token t where t.userId =:userId and (t.expired = false or t.revoked = false)")
-	List<Token> findAllValidTokenByUserId(Integer userId);
+	List<Token> findAllValidTokenByUserId(long userId);
 	
 	Optional<Token> findByToken(String token);
 }

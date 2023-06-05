@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
 import com.ceir.CeirCode.model.oam.RequestHeaders;
@@ -115,6 +117,15 @@ public class LoginService {
 
     @Autowired
     UsertypeRepo usertypeRepo;
+    
+	@Autowired
+	JwtServiceImpl jwtService;
+
+	@Autowired
+	AuthenticationManager authenticationManager;
+	
+	@Autowired
+	TokenService tokenService;
 
     public ResponseEntity<?> userLogin(UserLogin userLogin) {
         try {
@@ -224,7 +235,17 @@ public class LoginService {
                             log.info("going for UserData6  " + UserData.getUsertype().getSelfRegister());
 
                             log.info("going for UserData7  " + UserData.getUsertype().getDefaultLink());
- 
+                            
+                            //Security token code
+    						authenticationManager.authenticate(
+    								new UsernamePasswordAuthenticationToken(UserData.getUsername(), UserData.getPassword())
+    								);
+    						
+    						String jwtToken = jwtService.generateToken(UserData);
+    						log.info("Token for user ["+UserData.getUsername()+"] is ["+jwtToken+"]");
+                            tokenService.revokeAllUserTokens(UserData);
+                            tokenService.saveUserToken(UserData, jwtToken);
+    						
                             LoginResponse response = new LoginResponse("user credentials are correct", 200,
                                     userRoles, UserData.getUsername(), UserData.getId(), UserData.getUserProfile().getFirstName(),
                                     UserData.getUsertype().getUsertypeName(), UserData.getUsertype().getId(),
@@ -232,6 +253,7 @@ public class LoginService {
                                     UserData.getUserProfile().getOperatorTypeId(), UserData.getUserLanguage(),
                                     periodInterp, UserData.getCurrentStatus(), UserData.getUsertype().getSelfRegister(),
                                     UserData.getUsertype().getDefaultLink());
+                            response.setToken(jwtToken);
                             log.info("login response:  " + response);
                             return new ResponseEntity<>(response, HttpStatus.OK);
                         }

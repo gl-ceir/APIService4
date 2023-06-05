@@ -34,7 +34,7 @@ public class Token {
 
 	public boolean expired;
 
-	public Integer userId;
+	public long userId;
 	
 	@CreationTimestamp
 	private LocalDateTime createdOn;
@@ -82,11 +82,11 @@ public class Token {
 		this.expired = expired;
 	}
 
-	public Integer getUserId() {
+	public long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Integer userId) {
+	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 
