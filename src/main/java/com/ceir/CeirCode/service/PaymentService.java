@@ -16,7 +16,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-//import com.ceir.CeirCode.feign.PaymentFeign;
 import com.ceir.CeirCode.model.app.User;
 import com.ceir.CeirCode.model.app.UserPayment;
 import com.ceir.CeirCode.model.app.UserProfile;

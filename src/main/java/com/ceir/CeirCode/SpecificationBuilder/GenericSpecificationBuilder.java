@@ -14,11 +14,11 @@ import org.springframework.data.jpa.domain.Specification;
 import com.ceir.CeirCode.Constants.Datatype;
 import com.ceir.CeirCode.Constants.SearchOperation;
 import com.ceir.CeirCode.model.app.SearchCriteria;
+import com.ceir.CeirCode.model.app.StakeholderFeature;
 import com.ceir.CeirCode.model.app.User;
 import com.ceir.CeirCode.model.app.UserProfile;
 import com.ceir.CeirCode.model.app.UserToStakehoderfeatureMapping;
 import com.ceir.CeirCode.model.app.Usertype;
-import com.ceir.CeirCode.model.app.StakeholderFeature;
 import com.ceir.CeirCode.util.DbFunctions;
 
 

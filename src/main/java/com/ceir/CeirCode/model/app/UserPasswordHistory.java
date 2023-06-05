@@ -1,6 +1,5 @@
 package com.ceir.CeirCode.model.app;
 
-import com.ceir.CeirCode.model.app.User;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -16,6 +15,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.envers.Audited;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.ceir.CeirCode.model.app.User;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.Table;
 @Entity

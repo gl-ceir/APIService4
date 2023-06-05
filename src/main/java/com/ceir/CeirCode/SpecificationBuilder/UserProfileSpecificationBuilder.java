@@ -7,12 +7,13 @@ import javax.persistence.criteria.Join;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.jpa.domain.Specification;
+
+import com.ceir.CeirCode.Constants.Datatype;
+import com.ceir.CeirCode.Constants.SearchOperation;
 import com.ceir.CeirCode.model.app.SearchCriteria;
 import com.ceir.CeirCode.model.app.User;
 import com.ceir.CeirCode.model.app.UserProfile;
 import com.ceir.CeirCode.model.app.Usertype;
-import com.ceir.CeirCode.Constants.Datatype;
-import com.ceir.CeirCode.Constants.SearchOperation;
 import com.ceir.CeirCode.util.DbFunctions;
 
 public class UserProfileSpecificationBuilder {

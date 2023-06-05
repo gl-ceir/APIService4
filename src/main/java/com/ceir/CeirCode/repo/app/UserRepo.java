@@ -1,5 +1,6 @@
 package com.ceir.CeirCode.repo.app;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -34,4 +35,6 @@ public interface UserRepo extends JpaRepository<User, Long> ,JpaSpecificationExe
 	@Modifying
 	@Query(value="update user  set MODIFIED_ON = CURRENT_TIMESTAMP, current_Status = :currentStatus ,previous_status = :previousStatus where id = :id",nativeQuery = true)
 	public int setStatusForUser(int currentStatus, int previousStatus,long id);
+	
+	Optional<User> getByUsername(String userName);
 }
