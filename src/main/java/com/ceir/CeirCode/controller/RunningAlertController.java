@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ceir.CeirCode.filtermodel.AlertDbFilter;
 import com.ceir.CeirCode.filtermodel.RunningAlertFilter;
-import com.ceir.CeirCode.model.AlertDb;
-import com.ceir.CeirCode.model.FileDetails;
-import com.ceir.CeirCode.model.RunningAlertDb;
-import com.ceir.CeirCode.model.SystemConfigListDb;
-import com.ceir.CeirCode.model.UserProfile;
-import com.ceir.CeirCode.repo.RunningAlertDbRepo;
-import com.ceir.CeirCode.repo.SystemConfigDbListRepository;
+import com.ceir.CeirCode.model.app.AlertDb;
+import com.ceir.CeirCode.model.app.FileDetails;
+import com.ceir.CeirCode.model.app.RunningAlertDb;
+import com.ceir.CeirCode.model.app.SystemConfigListDb;
+import com.ceir.CeirCode.model.app.UserProfile;
+import com.ceir.CeirCode.repo.app.RunningAlertDbRepo;
+import com.ceir.CeirCode.repo.app.SystemConfigDbListRepository;
 import com.ceir.CeirCode.service.AlertDbService;
 import com.ceir.CeirCode.service.RunningAlertDbService;
 

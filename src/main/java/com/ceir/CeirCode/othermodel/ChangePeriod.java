@@ -1,6 +1,6 @@
 package com.ceir.CeirCode.othermodel;
 
-import com.ceir.CeirCode.model.AllRequest;
+import com.ceir.CeirCode.model.app.AllRequest;
 
 public class ChangePeriod extends AllRequest{
 

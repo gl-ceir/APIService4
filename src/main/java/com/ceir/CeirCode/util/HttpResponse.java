@@ -1,5 +1,5 @@
 package com.ceir.CeirCode.util;
-import com.ceir.CeirCode.model.User;
+import com.ceir.CeirCode.model.app.User;
 public class HttpResponse {
 	private String response;
 	private String tag;

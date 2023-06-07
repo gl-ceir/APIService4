@@ -3,9 +3,9 @@ package com.ceir.CeirCode.repoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ceir.CeirCode.model.PeriodValidate;
-import com.ceir.CeirCode.model.UserToStakehoderfeatureMapping;
-import com.ceir.CeirCode.repo.UserToStakehoderfeatureMappingRepo;
+import com.ceir.CeirCode.model.app.PeriodValidate;
+import com.ceir.CeirCode.model.app.UserToStakehoderfeatureMapping;
+import com.ceir.CeirCode.repo.app.UserToStakehoderfeatureMappingRepo;
 @Service
 public class UserFeatureRepoService {
 

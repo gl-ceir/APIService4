@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ceir.CeirCode.exceptions.ResourceServicesException;
-import com.ceir.CeirCode.model.StateMgmtDb;
-import com.ceir.CeirCode.model.StatesInterpretationDb;
-import com.ceir.CeirCode.repo.StateMgmtRepository;
-import com.ceir.CeirCode.repo.StatesInterpretaionRepository;
+import com.ceir.CeirCode.model.app.StateMgmtDb;
+import com.ceir.CeirCode.model.app.StatesInterpretationDb;
+import com.ceir.CeirCode.repo.app.StateMgmtRepository;
+import com.ceir.CeirCode.repo.app.StatesInterpretaionRepository;
 
 @Service
 public class StateMgmtServiceImpl {

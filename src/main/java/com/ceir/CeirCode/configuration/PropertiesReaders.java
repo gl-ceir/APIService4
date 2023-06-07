@@ -11,4 +11,14 @@ public class PropertiesReaders {
 	
 	@Value("${local-ip}")
 	public String localIp;
+        
+        @Value("${server_name}")
+	public String serverName;
+   
+            
+        @Value("${module_name}")
+        public String moduleName;
+  
+    
+        
 }

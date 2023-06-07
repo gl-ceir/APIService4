@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ceir.CeirCode.repo.MessageConfigurationDbRepository;
+import com.ceir.CeirCode.repo.app.MessageConfigurationDbRepository;
 
 import io.swagger.annotations.ApiOperation;
 

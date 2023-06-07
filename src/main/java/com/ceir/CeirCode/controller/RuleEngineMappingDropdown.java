@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ceir.CeirCode.model.RuleEngineMapping;
-import com.ceir.CeirCode.repo.RuleEngineMappingRepo;
+import com.ceir.CeirCode.model.app.RuleEngineMapping;
+import com.ceir.CeirCode.repo.app.RuleEngineMappingRepo;
 
 import io.swagger.annotations.ApiOperation;
 

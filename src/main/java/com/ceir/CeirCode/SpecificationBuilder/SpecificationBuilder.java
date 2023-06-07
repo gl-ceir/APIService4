@@ -14,11 +14,11 @@ import org.springframework.data.jpa.domain.Specification;
 
 import com.ceir.CeirCode.Constants.Datatype;
 import com.ceir.CeirCode.Constants.SearchOperation;
-import com.ceir.CeirCode.model.SearchCriteria;
-import com.ceir.CeirCode.model.User;
-import com.ceir.CeirCode.model.UserProfile;
-import com.ceir.CeirCode.model.Usertype;
-import com.ceir.CeirCode.model.Userrole;
+import com.ceir.CeirCode.model.app.SearchCriteria;
+import com.ceir.CeirCode.model.app.User;
+import com.ceir.CeirCode.model.app.UserProfile;
+import com.ceir.CeirCode.model.app.Userrole;
+import com.ceir.CeirCode.model.app.Usertype;
 import com.ceir.CeirCode.util.DbFunctions;
 
 

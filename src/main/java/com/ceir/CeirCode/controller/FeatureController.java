@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ceir.CeirCode.model.PeriodValidate;
-import com.ceir.CeirCode.model.StakeholderFeature;
-import com.ceir.CeirCode.model.UserLogin;
+import com.ceir.CeirCode.model.app.PeriodValidate;
+import com.ceir.CeirCode.model.app.StakeholderFeature;
+import com.ceir.CeirCode.model.app.UserLogin;
 import com.ceir.CeirCode.response.GenricResponse;
 import com.ceir.CeirCode.service.FeatureService;
 import com.ceir.CeirCode.util.HttpResponse;

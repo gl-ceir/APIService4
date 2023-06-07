@@ -1,6 +1,6 @@
 package com.ceir.CeirCode.filtermodel;
 
-import com.ceir.CeirCode.model.AllRequest;
+import com.ceir.CeirCode.model.app.AllRequest;
 
 public class SlaFilter extends AllRequest{
 	public String  startDate;

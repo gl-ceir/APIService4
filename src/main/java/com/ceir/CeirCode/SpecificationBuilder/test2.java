@@ -12,7 +12,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 import com.ceir.CeirCode.Constants.Datatype;
 import com.ceir.CeirCode.Constants.SearchOperation;
-import com.ceir.CeirCode.model.SearchCriteria;
+import com.ceir.CeirCode.model.app.SearchCriteria;
 import com.ceir.CeirCode.util.DbFunctions;
 
 

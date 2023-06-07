@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ceir.CeirCode.filtermodel.PortAddressFilter;
-import com.ceir.CeirCode.model.AllRequest;
-import com.ceir.CeirCode.model.FileDetails;
-import com.ceir.CeirCode.model.FilterRequest;
-import com.ceir.CeirCode.model.PortAddress;
-import com.ceir.CeirCode.model.SystemConfigListDb;
-import com.ceir.CeirCode.model.UserProfile;
+import com.ceir.CeirCode.model.app.AllRequest;
+import com.ceir.CeirCode.model.app.FileDetails;
+import com.ceir.CeirCode.model.app.FilterRequest;
+import com.ceir.CeirCode.model.app.PortAddress;
+import com.ceir.CeirCode.model.app.SystemConfigListDb;
+import com.ceir.CeirCode.model.app.UserProfile;
 import com.ceir.CeirCode.repoService.SystemConfigDbRepoService;
 import com.ceir.CeirCode.repoService.SystemConfigurationDbRepoService;
 import com.ceir.CeirCode.service.PortAddressService;

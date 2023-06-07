@@ -11,9 +11,9 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.ceir.CeirCode.exceptions.ResourceServicesException;
-import com.ceir.CeirCode.model.Notification;
-import com.ceir.CeirCode.model.User;
-import com.ceir.CeirCode.repo.NotificationRepository;
+import com.ceir.CeirCode.model.app.Notification;
+import com.ceir.CeirCode.model.app.User;
+import com.ceir.CeirCode.repo.app.NotificationRepository;
 import com.ceir.CeirCode.response.GenricResponse;
 
 import org.slf4j.Logger;

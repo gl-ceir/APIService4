@@ -5,8 +5,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ceir.CeirCode.model.PortAddress;
-import com.ceir.CeirCode.repo.PortAddressRepo;
+
+import com.ceir.CeirCode.model.app.PortAddress;
+import com.ceir.CeirCode.repo.app.PortAddressRepo;
 @Service
 public class PortAddressRepoService {
 
