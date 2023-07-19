@@ -36,7 +36,10 @@ public class SysParamServiceImpl {
 	}
 	  
 	public void getErrorDetails(String tag, HttpServletResponse response) {
+//		  Object[] errorDetails = null;
 		SystemConfigurationDb configuration = systemConfigurationDbRepository.getByTag(tag);
+//		  errorDetails = new Object[] {configuration.getType(), configuration.getValue()};
+//		  return errorDetails;
 		try {
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");

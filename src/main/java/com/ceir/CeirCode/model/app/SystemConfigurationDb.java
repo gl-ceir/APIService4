@@ -20,9 +20,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.Table;
 
 @Entity
-
-  @Table(name="sys_param")
-
+@Table(name="sys_param")
 public class SystemConfigurationDb implements Serializable {
 
 	private static final long serialVersionUID = 1L;

@@ -12,7 +12,7 @@ public class PropertiesReaders {
 	@Value("${local-ip}")
 	public String localIp;
         
-        @Value("${server_name}")
+        @Value("${serverName}")
 	public String serverName;
    
             

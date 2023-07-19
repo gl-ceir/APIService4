@@ -10,10 +10,12 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.ComponentScan;
 
+import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
+
 
 // @EnableJpaAuditing
 @SpringBootApplication
-@EnableAutoConfiguration
+//@EnableAutoConfiguration
 @ComponentScan("com.ceir.CeirCode")
 
 @EnableCaching
@@ -21,7 +23,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @EntityScan({"com.ceir.CeirCode.model"})
 
-//@EnableEncryptableProperties
+@EnableEncryptableProperties
 public class App {
 
     public static void main(String[] args) {

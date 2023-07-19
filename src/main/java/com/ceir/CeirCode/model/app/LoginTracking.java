@@ -18,8 +18,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.Table;
+
 @Entity 
-@Audited
+//@Audited
 @Table(name = "user_login_status")
 
 public class LoginTracking {
