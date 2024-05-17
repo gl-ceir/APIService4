@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ceir.CeirCode.model.User;
-import com.ceir.CeirCode.repo.UserRepo;
+import com.ceir.CeirCode.model.app.User;
+import com.ceir.CeirCode.repo.app.UserRepo;
 
 @Service
 public class UserRepoService {

@@ -1,6 +1,6 @@
 package com.ceir.CeirCode.filtermodel;
 
-import com.ceir.CeirCode.model.AllRequest;
+import com.ceir.CeirCode.model.app.AllRequest;
 
 public class AlertDbFilter extends AllRequest{
 
@@ -9,6 +9,7 @@ public class AlertDbFilter extends AllRequest{
 	private String alertId;
 	private String searchString;
 	public String order,orderColumnName,feature,description;
+	private String sort,columnName;
 
 	
 	
@@ -60,28 +61,27 @@ public class AlertDbFilter extends AllRequest{
 	public void setSearchString(String searchString) {
 		this.searchString = searchString;
 	}
+	public String getSort() {
+		return sort;
+	}
+	public void setSort(String sort) {
+		this.sort = sort;
+	}
+	public String getColumnName() {
+		return columnName;
+	}
+	public void setColumnName(String columnName) {
+		this.columnName = columnName;
+	}
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("AlertDbFilter [startDate=");
-		builder.append(startDate);
-		builder.append(", endDate=");
-		builder.append(endDate);
-		builder.append(", alertId=");
-		builder.append(alertId);
-		builder.append(", searchString=");
-		builder.append(searchString);
-		builder.append(", order=");
-		builder.append(order);
-		builder.append(", orderColumnName=");
-		builder.append(orderColumnName);
-		builder.append(", feature=");
-		builder.append(feature);
-		builder.append(", description=");
-		builder.append(description);
-		builder.append("]");
-		return builder.toString();
+		return "AlertDbFilter [startDate=" + startDate + ", endDate=" + endDate + ", alertId=" + alertId
+				+ ", searchString=" + searchString + ", order=" + order + ", orderColumnName=" + orderColumnName
+				+ ", feature=" + feature + ", description=" + description + ", sort=" + sort + ", columnName="
+				+ columnName + "]";
 	}
+	
+	
 	
 	
 	

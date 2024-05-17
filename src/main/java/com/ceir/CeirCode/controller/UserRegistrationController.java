@@ -17,18 +17,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ceir.CeirCode.model.Otp;
-import com.ceir.CeirCode.model.ResendOtp;
-import com.ceir.CeirCode.model.RunningAlertDb;
-import com.ceir.CeirCode.model.SystemConfigurationDb;
-import com.ceir.CeirCode.model.UserProfile;
-import com.ceir.CeirCode.model.Usertype;
+import com.ceir.CeirCode.model.app.Otp;
+import com.ceir.CeirCode.model.app.ResendOtp;
+import com.ceir.CeirCode.model.app.RunningAlertDb;
+import com.ceir.CeirCode.model.app.SystemConfigurationDb;
+import com.ceir.CeirCode.model.app.UserProfile;
+import com.ceir.CeirCode.model.app.Usertype;
 import com.ceir.CeirCode.model.constants.AlertStatus;
 import com.ceir.CeirCode.model.constants.UsertypeData;
-import com.ceir.CeirCode.repo.SecurityQuestionRepo;
-import com.ceir.CeirCode.repo.UserProfileRepo;
-import com.ceir.CeirCode.repo.UserRepo;
-import com.ceir.CeirCode.repo.UsertypeRepo;
+import com.ceir.CeirCode.repo.app.SecurityQuestionRepo;
+import com.ceir.CeirCode.repo.app.UserProfileRepo;
+import com.ceir.CeirCode.repo.app.UserRepo;
+import com.ceir.CeirCode.repo.app.UsertypeRepo;
 import com.ceir.CeirCode.repoService.RunningAlertRepoService;
 import com.ceir.CeirCode.repoService.SystemConfigDbRepoService;
 import com.ceir.CeirCode.repoService.UserRepoService;
@@ -121,12 +121,14 @@ public class UserRegistrationController {
 		return userService.checkRegistration(usertypeId);
 	}
 
-	@ApiOperation(value = "update email and phone status", response = HttpResponse.class)
-	@PostMapping("/validate")
-	public ResponseEntity<?> UpdateOtpStatus(@RequestBody Otp otp) {
-		return userService.validateUser(otp);
-	}
-
+	/*
+	 * @ApiOperation(value = "update email and phone status", response =
+	 * HttpResponse.class)
+	 * 
+	 * @PostMapping("/validate") public ResponseEntity<?>
+	 * UpdateOtpStatus(@RequestBody Otp otp) { return userService.validateUser(otp);
+	 * }
+	 */
 	@ApiOperation(value = "otp resend", response = HttpResponse.class)
 
 	@PostMapping("/resendOtp")
@@ -134,13 +136,13 @@ public class UserRegistrationController {
 		return userService.resendOtp(otp);
 	}
 
-	@ApiOperation(value = "otp resend", response = HttpResponse.class)
-
-	@PostMapping("/profileResendOtp")
-	public ResponseEntity<?> profileResendOtp(@RequestBody ResendOtp otp) {
-		return userService.profileResendOtp(otp);
-	}
-
+	/*
+	 * @ApiOperation(value = "otp resend", response = HttpResponse.class)
+	 * 
+	 * @PostMapping("/profileResendOtp") public ResponseEntity<?>
+	 * profileResendOtp(@RequestBody ResendOtp otp) { return
+	 * userService.profileResendOtp(otp); }
+	 */
 	@ApiOperation(value = "soft Delete API", response = HttpResponse.class)
 	@PostMapping("/softDelete")
 	public ResponseEntity<?> softDelete(@RequestParam(name = "currentStatus", required = true) int currentStatus,

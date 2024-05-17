@@ -28,18 +28,20 @@ import com.ceir.CeirCode.filemodel.AlertDbFile;
 import com.ceir.CeirCode.filemodel.RunningAlertFile;
 import com.ceir.CeirCode.filtermodel.AlertDbFilter;
 import com.ceir.CeirCode.filtermodel.RunningAlertFilter;
-import com.ceir.CeirCode.model.AlertDb;
-import com.ceir.CeirCode.model.FileDetails;
-import com.ceir.CeirCode.model.RunningAlertDb;
-import com.ceir.CeirCode.model.SearchCriteria;
-import com.ceir.CeirCode.model.SystemConfigListDb;
-import com.ceir.CeirCode.model.SystemConfigurationDb;
-import com.ceir.CeirCode.model.User;
+import com.ceir.CeirCode.model.app.AlertDb;
+import com.ceir.CeirCode.model.app.FileDetails;
+import com.ceir.CeirCode.model.app.RunningAlertDb;
+import com.ceir.CeirCode.model.app.SearchCriteria;
+import com.ceir.CeirCode.model.app.SystemConfigListDb;
+import com.ceir.CeirCode.model.app.SystemConfigurationDb;
+import com.ceir.CeirCode.model.app.User;
+import com.ceir.CeirCode.model.audit.AuditDB;
 import com.ceir.CeirCode.model.constants.Features;
 import com.ceir.CeirCode.model.constants.SubFeatures;
-import com.ceir.CeirCode.repo.RunningAlertDbRepo;
-import com.ceir.CeirCode.repo.SystemConfigDbListRepository;
-import com.ceir.CeirCode.repo.SystemConfigDbRepository;
+import com.ceir.CeirCode.repo.app.RunningAlertDbRepo;
+import com.ceir.CeirCode.repo.app.SystemConfigDbListRepository;
+import com.ceir.CeirCode.repo.app.SystemConfigDbRepository;
+import com.ceir.CeirCode.repo.audit.AuditDBRepo;
 import com.ceir.CeirCode.repoService.ReqHeaderRepoService;
 import com.ceir.CeirCode.repoService.SystemConfigDbRepoService;
 import com.ceir.CeirCode.repoService.UserRepoService;
@@ -81,6 +83,10 @@ public class RunningAlertDbService {
 
 	@Autowired
 	SystemConfigDbRepository systemConfigDbRepository; 
+	
+	@Autowired
+	AuditDBRepo auditDb;
+	
 	private GenericSpecificationBuilder<RunningAlertDb> buildSpecification(RunningAlertFilter filterRequest){
 
 		GenericSpecificationBuilder<RunningAlertDb> rASB = new GenericSpecificationBuilder<RunningAlertDb>(propertiesReader.dialect);	
@@ -155,14 +161,30 @@ public class RunningAlertDbService {
 			//Pageable pageable = PageRequest.of(pageNo, pageSize, new Sort(Sort.Direction.DESC, "modifiedOn"));
 			Page<RunningAlertDb> page=runningAertRepo.findAll(buildSpecification(filterRequest).build(),pageable);	
 			if(source.equalsIgnoreCase("menu")) {
-				userService.saveUserTrail(filterRequest.getUserId(),filterRequest.getUsername(),
-						filterRequest.getUserType(),filterRequest.getUserTypeId(),Features.Running_Alert_Management,SubFeatures.VIEW_ALL,filterRequest.getFeatureId(),
-						filterRequest.getPublicIp(),filterRequest.getBrowser());
+				/*
+				 * userService.saveUserTrail(filterRequest.getUserId(),filterRequest.getUsername
+				 * (), filterRequest.getUserType(),filterRequest.getUserTypeId(),Features.
+				 * Running_Alert_Management,SubFeatures.VIEW_ALL,filterRequest.getFeatureId(),
+				 * filterRequest.getPublicIp(),filterRequest.getBrowser());
+				 */
+				
+				auditDb.save(new AuditDB(filterRequest.getUserId(), filterRequest.getUsername(),
+						Long.valueOf(filterRequest.getUserTypeId()), filterRequest.getUserType(),
+						Long.valueOf(filterRequest.getFeatureId()), Features.Running_Alert_Management, SubFeatures.VIEW_ALL, "", "NA",
+						"SystemAdmin",filterRequest.getPublicIp(),filterRequest.getBrowser()));
 			}
 			else if (source.equalsIgnoreCase("filter")) {
-				userService.saveUserTrail(filterRequest.getUserId(),filterRequest.getUsername(),
-						filterRequest.getUserType(),filterRequest.getUserTypeId(),Features.Running_Alert_Management,SubFeatures.FILTER,filterRequest.getFeatureId(),
-						filterRequest.getPublicIp(),filterRequest.getBrowser());
+				/*
+				 * userService.saveUserTrail(filterRequest.getUserId(),filterRequest.getUsername
+				 * (), filterRequest.getUserType(),filterRequest.getUserTypeId(),Features.
+				 * Running_Alert_Management,SubFeatures.FILTER,filterRequest.getFeatureId(),
+				 * filterRequest.getPublicIp(),filterRequest.getBrowser());
+				 */
+				
+				auditDb.save(new AuditDB(filterRequest.getUserId(), filterRequest.getUsername(),
+						Long.valueOf(filterRequest.getUserTypeId()), filterRequest.getUserType(),
+						Long.valueOf(filterRequest.getFeatureId()), Features.Running_Alert_Management, SubFeatures.FILTER, "", "NA",
+						"SystemAdmin",filterRequest.getPublicIp(),filterRequest.getBrowser()));
 			} else if (source.equalsIgnoreCase("ViewExport")){
 				log.info("for "+source+" no entries in Audit Trail");
 			}
@@ -221,9 +243,18 @@ public class RunningAlertDbService {
 //			
 			builder = new StatefulBeanToCsvBuilder<>(writer);
 			csvWriter = builder.withMappingStrategy(mapStrategy).withSeparator(',').withQuotechar(CSVWriter.DEFAULT_QUOTE_CHARACTER).build();
-			userService.saveUserTrail(runAlertFilter.getUserId(),runAlertFilter.getUsername(),
-					runAlertFilter.getUserType(),runAlertFilter.getUserTypeId(),Features.Running_Alert_Management,SubFeatures.EXPORT,runAlertFilter.getFeatureId(),
-					runAlertFilter.getPublicIp(),runAlertFilter.getBrowser());
+			/*
+			 * userService.saveUserTrail(runAlertFilter.getUserId(),runAlertFilter.
+			 * getUsername(),
+			 * runAlertFilter.getUserType(),runAlertFilter.getUserTypeId(),Features.
+			 * Running_Alert_Management,SubFeatures.EXPORT,runAlertFilter.getFeatureId(),
+			 * runAlertFilter.getPublicIp(),runAlertFilter.getBrowser());
+			 */
+			
+			auditDb.save(new AuditDB(runAlertFilter.getUserId(), runAlertFilter.getUsername(),
+					Long.valueOf(runAlertFilter.getUserTypeId()), runAlertFilter.getUserType(),
+					Long.valueOf(runAlertFilter.getFeatureId()), Features.Running_Alert_Management, SubFeatures.EXPORT, "", "NA",
+					"SystemAdmin",runAlertFilter.getPublicIp(),runAlertFilter.getBrowser()));
 			if( list.size() > 0 ) {
 				//List<SystemConfigListDb> systemConfigListDbs = configurationManagementServiceImpl.getSystemConfigListByTag("GRIEVANCE_CATEGORY");
 				fileRecords = new ArrayList<RunningAlertFile>();

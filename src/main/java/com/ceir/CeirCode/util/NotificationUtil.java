@@ -17,12 +17,12 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
-import com.ceir.CeirCode.model.MessageConfigurationDb;
-import com.ceir.CeirCode.model.Notification;
-import com.ceir.CeirCode.model.UserProfile;
+import com.ceir.CeirCode.model.app.MessageConfigurationDb;
+import com.ceir.CeirCode.model.app.Notification;
+import com.ceir.CeirCode.model.app.UserProfile;
 import com.ceir.CeirCode.model.constants.ChannelType;
-import com.ceir.CeirCode.repo.MessageConfigurationDbRepository;
-import com.ceir.CeirCode.repo.NotificationRepository;
+import com.ceir.CeirCode.repo.app.MessageConfigurationDbRepository;
+import com.ceir.CeirCode.repo.app.NotificationRepository;
 import com.ceir.CeirCode.response.GenricResponse;
 import com.ceir.CeirCode.service.ConfigurationManagementServiceImpl;
 import com.ceir.CeirCode.service.UserService;
@@ -89,7 +89,7 @@ public class NotificationUtil {
 			notification.setSubject(subject);
 			notification.setRetryCount(0);
 			notification.setReferTable(referTable);
-			notification.setAuthorityStatus(authorityStatus);
+			//notification.setAuthorityStatus(authorityStatus);
 			String receiverType="";
 			if(userProfileData.getUser().getUsertype().getId()==7 ) {
 				receiverType="Custom";

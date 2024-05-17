@@ -30,26 +30,26 @@ import com.ceir.CeirCode.configuration.PropertiesReaders;
 import com.ceir.CeirCode.exceptions.ResourceServicesException;
 import com.ceir.CeirCode.filemodel.UserMgmtFileModel;
 import com.ceir.CeirCode.filtermodel.UserMgmtFilter;
-import com.ceir.CeirCode.model.AllRequest;
-import com.ceir.CeirCode.model.FileDetails;
-import com.ceir.CeirCode.model.PortAddress;
-import com.ceir.CeirCode.model.RunningAlertDb;
-import com.ceir.CeirCode.model.SearchCriteria;
-import com.ceir.CeirCode.model.SystemConfigurationDb;
-import com.ceir.CeirCode.model.User;
-import com.ceir.CeirCode.model.UserDetails;
-import com.ceir.CeirCode.model.UserProfile;
-import com.ceir.CeirCode.model.Userrole;
-import com.ceir.CeirCode.model.Usertype;
+import com.ceir.CeirCode.model.app.AllRequest;
+import com.ceir.CeirCode.model.app.FileDetails;
+import com.ceir.CeirCode.model.app.PortAddress;
+import com.ceir.CeirCode.model.app.RunningAlertDb;
+import com.ceir.CeirCode.model.app.SearchCriteria;
+import com.ceir.CeirCode.model.app.SystemConfigurationDb;
+import com.ceir.CeirCode.model.app.User;
+import com.ceir.CeirCode.model.app.UserDetails;
+import com.ceir.CeirCode.model.app.UserProfile;
+import com.ceir.CeirCode.model.app.Userrole;
+import com.ceir.CeirCode.model.app.Usertype;
 import com.ceir.CeirCode.model.constants.AlertStatus;
 import com.ceir.CeirCode.model.constants.Features;
 import com.ceir.CeirCode.model.constants.SubFeatures;
 import com.ceir.CeirCode.model.constants.UsertypeData;
 import com.ceir.CeirCode.othermodel.UserPort;
-import com.ceir.CeirCode.repo.SystemConfigDbRepository;
-import com.ceir.CeirCode.repo.UserProfileRepo;
-import com.ceir.CeirCode.repo.UserRepo;
-import com.ceir.CeirCode.repo.UsertypeRepo;
+import com.ceir.CeirCode.repo.app.SystemConfigDbRepository;
+import com.ceir.CeirCode.repo.app.UserProfileRepo;
+import com.ceir.CeirCode.repo.app.UserRepo;
+import com.ceir.CeirCode.repo.app.UsertypeRepo;
 import com.ceir.CeirCode.repoService.ReqHeaderRepoService;
 import com.ceir.CeirCode.repoService.RunningAlertRepoService;
 import com.ceir.CeirCode.repoService.SystemConfigDbRepoService;
@@ -146,7 +146,7 @@ public class UserMgmtService {
 		 */
 		
 		uPSB.addSpecification(
-				uPSB.joinWithUserType(new SearchCriteria("selfRegister", 1, SearchOperation.EQUALITY, Datatype.INT)));
+				uPSB.joinWithUserType(new SearchCriteria("selfRegister", 0, SearchOperation.EQUALITY, Datatype.INT)));
 		
 		
 		

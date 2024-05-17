@@ -1,5 +1,9 @@
 package com.ceir.CeirCode.controller;
 
+import java.nio.file.Paths;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
@@ -14,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ceir.CeirCode.filtermodel.AlertDbFilter;
-import com.ceir.CeirCode.model.AlertDb;
-import com.ceir.CeirCode.model.AllRequest;
-import com.ceir.CeirCode.model.FileDetails;
-import com.ceir.CeirCode.repo.SystemConfigDbListRepository;
+import com.ceir.CeirCode.model.app.AlertDb;
+import com.ceir.CeirCode.model.app.AllRequest;
+import com.ceir.CeirCode.model.app.FileDetails;
+import com.ceir.CeirCode.repo.app.SystemConfigDbListRepository;
 import com.ceir.CeirCode.service.AlertDbService;
 import com.ceir.CeirCode.util.HttpResponse;
 
@@ -34,6 +38,8 @@ public class AlertDbController {
 	@Autowired
 	AlertDbService alertDbService;
 	
+	private final Logger log = LoggerFactory.getLogger(getClass());
+	
 	@ApiOperation(value = "alert db  data.", response = AlertDb.class)
 	@PostMapping("/viewAll") 
 	public MappingJacksonValue viewRecord(@RequestBody AlertDbFilter filterRequest,
@@ -42,12 +48,15 @@ public class AlertDbController {
 			@RequestParam(value = "file", defaultValue = "0") Integer file,
 			@RequestParam(name = "source", defaultValue = "menu", required = false) String source){
 		MappingJacksonValue mapping = null;
+		log.info(" filter or export: "+file);
 		if( file == 0) {
+			log.info(" filter block: ");
 			Page<AlertDb> alertDbReponse  = alertDbService.viewAllAlertData(filterRequest, pageNo, pageSize,source);
 			mapping = new MappingJacksonValue(alertDbReponse);
 			
 		}else {
 			//hh
+			log.info(" export block: ");
 			FileDetails fileDetails = alertDbService.getAlertDbInFile(filterRequest,source);
 			mapping = new MappingJacksonValue(fileDetails);
 		}

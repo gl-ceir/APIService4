@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -21,6 +22,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+
 import com.ceir.CeirCode.Constants.Datatype;
 import com.ceir.CeirCode.Constants.SearchOperation;
 import com.ceir.CeirCode.SpecificationBuilder.GenericSpecificationBuilder;
@@ -29,22 +31,25 @@ import com.ceir.CeirCode.exceptions.ResourceServicesException;
 import com.ceir.CeirCode.filemodel.AlertDbFile;
 import com.ceir.CeirCode.filemodel.ExchangeRateFile;
 import com.ceir.CeirCode.filemodel.ReqHeaderFile;
+import com.ceir.CeirCode.configuration.SortDirection;
 import com.ceir.CeirCode.filtermodel.AlertDbFilter;
 import com.ceir.CeirCode.filtermodel.CurrencyFilter;
-import com.ceir.CeirCode.model.AlertDb;
-import com.ceir.CeirCode.model.AllRequest;
-import com.ceir.CeirCode.model.Currency;
-import com.ceir.CeirCode.model.FileDetails;
-import com.ceir.CeirCode.model.RequestHeaders;
-import com.ceir.CeirCode.model.SearchCriteria;
-import com.ceir.CeirCode.model.SystemConfigListDb;
-import com.ceir.CeirCode.model.SystemConfigurationDb;
-import com.ceir.CeirCode.model.UserProfileFileModel;
+import com.ceir.CeirCode.model.oam.RequestHeaders;
+import com.ceir.CeirCode.model.app.AlertDb;
+import com.ceir.CeirCode.model.app.AllRequest;
+import com.ceir.CeirCode.model.app.Currency;
+import com.ceir.CeirCode.model.app.FileDetails;
+import com.ceir.CeirCode.model.app.SearchCriteria;
+import com.ceir.CeirCode.model.app.SystemConfigListDb;
+import com.ceir.CeirCode.model.app.SystemConfigurationDb;
+import com.ceir.CeirCode.model.app.UserProfileFileModel;
+import com.ceir.CeirCode.model.audit.AuditDB;
 import com.ceir.CeirCode.model.constants.Features;
 import com.ceir.CeirCode.model.constants.SubFeatures;
-import com.ceir.CeirCode.repo.AlertDbRepo;
-import com.ceir.CeirCode.repo.SystemConfigDbListRepository;
-import com.ceir.CeirCode.repo.SystemConfigDbRepository;
+import com.ceir.CeirCode.repo.app.AlertDbRepo;
+import com.ceir.CeirCode.repo.app.SystemConfigDbListRepository;
+import com.ceir.CeirCode.repo.app.SystemConfigDbRepository;
+import com.ceir.CeirCode.repo.audit.AuditDBRepo;
 import com.ceir.CeirCode.repoService.AlertRepoService;
 import com.ceir.CeirCode.repoService.ReqHeaderRepoService;
 import com.ceir.CeirCode.repoService.SystemConfigDbRepoService;
@@ -95,7 +100,8 @@ public class AlertDbService {
 	@Autowired
 	SystemConfigDbRepository systemConfigDbRepository;
 	
-	
+	@Autowired
+	AuditDBRepo auditDb;
 	
 	
 	private GenericSpecificationBuilder<AlertDb> buildSpecification(AlertDbFilter filterRequest){
@@ -166,23 +172,67 @@ public class AlertDbService {
 									: "Description".equalsIgnoreCase(filterRequest.getOrderColumnName()) ? "description"
 											:"modifiedOn";
 			
-			Sort.Direction direction = getSortDirection(filterRequest.getOrder() == null ? "desc" : filterRequest.getOrder()); 
-			  
-			log.info("orderColumn Name is : "+orderColumn+ "  -------------  direction is : "+direction);
-			  
-			Pageable pageable = PageRequest.of(pageNo, pageSize, new Sort(direction, orderColumn));
+			/*
+			 * Sort.Direction direction = getSortDirection(filterRequest.getOrder() == null
+			 * ? "desc" : filterRequest.getOrder());
+			 * 
+			 * log.info("orderColumn Name is : "+orderColumn+
+			 * "  -------------  direction is : "+direction);
+			 * 
+			 * Pageable pageable = PageRequest.of(pageNo, pageSize, new Sort(direction,
+			 * orderColumn));
+			 */
+			log.info("orderColumn data:  "+orderColumn);
+			log.info("---system.getSort() : "+filterRequest.getSort());
+			Sort.Direction direction;
+			if("modifiedOn".equalsIgnoreCase(orderColumn)) {
+				
+				direction=Sort.Direction.DESC;
+			
+			}
+			else {
+			
+				direction= SortDirection.getSortDirection(filterRequest.getSort());
+				
+			}
+			if("modifiedOn".equalsIgnoreCase(orderColumn) && SortDirection.getSortDirection(filterRequest.getSort()).equals(Sort.Direction.ASC)) {
+				
+				direction=Sort.Direction.ASC;
+				
+			}
+			
+			Pageable pageable = PageRequest.of(pageNo, pageSize,  Sort.by(direction, orderColumn));
+		
+			log.info("column Name :: " + filterRequest.getColumnName()+"---system.getSort() : "+filterRequest.getSort());
+			
 			
 			//Pageable pageable = PageRequest.of(pageNo, pageSize, new Sort(Sort.Direction.DESC, "modifiedOn"));
             Page<AlertDb> page=alertDbRepo.findAll(buildSpecification(filterRequest).build(),pageable);
             
             if(source.equalsIgnoreCase("menu")) {
-            	userService.saveUserTrail(filterRequest.getUserId(),filterRequest.getUsername(),
-    					filterRequest.getUserType(),filterRequest.getUserTypeId(),Features.Alert_Management,SubFeatures.VIEW_ALL,filterRequest.getFeatureId(),
-    					filterRequest.getPublicIp(),filterRequest.getBrowser());	
+				/*
+				 * userService.saveUserTrail(filterRequest.getUserId(),filterRequest.getUsername
+				 * (), filterRequest.getUserType(),filterRequest.getUserTypeId(),Features.
+				 * Alert_Management,SubFeatures.VIEW_ALL,filterRequest.getFeatureId(),
+				 * filterRequest.getPublicIp(),filterRequest.getBrowser());
+				 */
+				 	
+				  auditDb.save(new AuditDB(filterRequest.getUserId(), filterRequest.getUsername(),
+    					Long.valueOf(filterRequest.getUserTypeId()), filterRequest.getUserType(),
+    					Long.valueOf(filterRequest.getFeatureId()), Features.Alert_Management, SubFeatures.VIEW_ALL, "", "NA",
+    					"SystemAdmin",filterRequest.getPublicIp(),filterRequest.getBrowser()));
+            	
             }else if(source.equalsIgnoreCase("filter")) {
-            	userService.saveUserTrail(filterRequest.getUserId(),filterRequest.getUsername(),
-    					filterRequest.getUserType(),filterRequest.getUserTypeId(),Features.Alert_Management,SubFeatures.FILTER,filterRequest.getFeatureId(),
-    					filterRequest.getPublicIp(),filterRequest.getBrowser());
+				/*
+				 * userService.saveUserTrail(filterRequest.getUserId(),filterRequest.getUsername
+				 * (), filterRequest.getUserType(),filterRequest.getUserTypeId(),Features.
+				 * Alert_Management,SubFeatures.FILTER,filterRequest.getFeatureId(),
+				 * filterRequest.getPublicIp(),filterRequest.getBrowser());
+				 */
+            	auditDb.save(new AuditDB(filterRequest.getUserId(), filterRequest.getUsername(),
+    					Long.valueOf(filterRequest.getUserTypeId()), filterRequest.getUserType(),
+    					Long.valueOf(filterRequest.getFeatureId()), Features.Alert_Management, SubFeatures.FILTER, "", "NA",
+    					"SystemAdmin",filterRequest.getPublicIp(),filterRequest.getBrowser()));
             }else if(source.equalsIgnoreCase("ViewExport")) {
             	log.info("for "+source+" no entries in Audit Trail");
             }
@@ -211,7 +261,7 @@ public class AlertDbService {
 	
 	
 	public FileDetails getAlertDbInFile(AlertDbFilter alertAbFilter, String source) {
-		log.info("filter data:  "+alertAbFilter);
+		log.info("export data:  "+alertAbFilter);
 		String fileName = null;
 		Writer writer   = null;
 		AlertDbFile adFm  = null;
@@ -229,6 +279,7 @@ public class AlertDbService {
 		
 		try {
 			mapStrategy.setType(AlertDbFile.class);
+			alertAbFilter.setSort("");
 			List<AlertDb> list = viewAllAlertData(alertAbFilter, pageNo, pageSize,source).getContent();
 			if( list.size()> 0 ) {
 				fileName = LocalDateTime.now().format(dtf).replace(" ", "_")+"_AlertDb.csv";
@@ -242,9 +293,17 @@ public class AlertDbService {
 //			
 			builder = new StatefulBeanToCsvBuilder<>(writer);
 			csvWriter = builder.withMappingStrategy(mapStrategy).withSeparator(',').withQuotechar(CSVWriter.DEFAULT_QUOTE_CHARACTER).build();
-			userService.saveUserTrail(alertAbFilter.getUserId(),alertAbFilter.getUsername(),
-					alertAbFilter.getUserType(),alertAbFilter.getUserTypeId(),Features.Alert_Management,SubFeatures.EXPORT,alertAbFilter.getFeatureId(),
-					alertAbFilter.getPublicIp(),alertAbFilter.getBrowser());
+			/*
+			 * userService.saveUserTrail(alertAbFilter.getUserId(),alertAbFilter.getUsername
+			 * (), alertAbFilter.getUserType(),alertAbFilter.getUserTypeId(),Features.
+			 * Alert_Management,SubFeatures.EXPORT,alertAbFilter.getFeatureId(),
+			 * alertAbFilter.getPublicIp(),alertAbFilter.getBrowser());
+			 */
+			
+			auditDb.save(new AuditDB(alertAbFilter.getUserId(), alertAbFilter.getUsername(),
+					Long.valueOf(alertAbFilter.getUserTypeId()), alertAbFilter.getUserType(),
+					Long.valueOf(alertAbFilter.getFeatureId()), Features.Alert_Management, SubFeatures.EXPORT, "", "NA",
+					"SystemAdmin",alertAbFilter.getPublicIp(),alertAbFilter.getBrowser()));
 			if( list.size() > 0 ) {
 				//List<SystemConfigListDb> systemConfigListDbs = configurationManagementServiceImpl.getSystemConfigListByTag("GRIEVANCE_CATEGORY");
 				fileRecords = new ArrayList<AlertDbFile>(); 
@@ -302,9 +361,17 @@ public class AlertDbService {
 //			RequestHeaders header=new RequestHeaders(request.getUserAgent(),request.getPublicIp(),request.getUsername());
 //			headerService.saveRequestHeader(header);
 			AlertDb alertDb=alertDbRepo.findById(request.getDataId());
-			userService.saveUserTrail(request.getUserId(),request.getUsername(),
-					request.getUserType(),request.getUserTypeId(),Features.Alert_Management,SubFeatures.VIEW,request.getFeatureId(),
-					request.getPublicIp(),request.getBrowser());
+			/*
+			 * userService.saveUserTrail(request.getUserId(),request.getUsername(),
+			 * request.getUserType(),request.getUserTypeId(),Features.Alert_Management,
+			 * SubFeatures.VIEW,request.getFeatureId(),
+			 * request.getPublicIp(),request.getBrowser());
+			 */
+			
+			auditDb.save(new AuditDB(request.getUserId(), request.getUsername(),
+					Long.valueOf(request.getUserTypeId()), request.getUserType(),
+					Long.valueOf(request.getFeatureId()), Features.Alert_Management, SubFeatures.VIEW, "", "NA",
+					"SystemAdmin",request.getPublicIp(),request.getBrowser()));
 			if(alertDb!=null) {
 				GenricResponse response=new GenricResponse(200,"","",alertDb);		
 				return new ResponseEntity<>(response, HttpStatus.OK);
@@ -333,10 +400,21 @@ public class AlertDbService {
 		AlertDb data=alertRepoService.getById(alertDb.getId());
 		if(data!=null) {
 		data.setDescription(alertDb.getDescription());
+		LocalDateTime now = LocalDateTime.now();  
+		data.setModifiedOn(now);
+		
 		AlertDb output=alertRepoService.save(data);
-		userService.saveUserTrail(alertDb.getUserId(),alertDb.getUsername(),
-				alertDb.getUserType(),alertDb.getUserTypeId(),Features.Alert_Management,SubFeatures.UPDATE,alertDb.getFeatureId(),
-				alertDb.getPublicIp(),alertDb.getBrowser());
+		/*
+		 * userService.saveUserTrail(alertDb.getUserId(),alertDb.getUsername(),
+		 * alertDb.getUserType(),alertDb.getUserTypeId(),Features.Alert_Management,
+		 * SubFeatures.UPDATE,alertDb.getFeatureId(),
+		 * alertDb.getPublicIp(),alertDb.getBrowser());
+		 */
+		
+		auditDb.save(new AuditDB(alertDb.getUserId(), alertDb.getUsername(),
+				Long.valueOf(alertDb.getUserTypeId()), alertDb.getUserType(),
+				Long.valueOf(alertDb.getFeatureId()), Features.Alert_Management, SubFeatures.UPDATE, "", "NA",
+				"SystemAdmin",alertDb.getPublicIp(),alertDb.getBrowser()));
 		
 		if(output!=null) {
 			GenricResponse response=new GenricResponse(200,AlertDbTags.Alert_Update_Sucess.getMessage(),AlertDbTags.Alert_Update_Sucess.getTag(),"");
