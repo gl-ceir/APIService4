@@ -2,7 +2,7 @@ package com.ceir.CeirCode.util;
 
 import java.util.List;
 
-import com.ceir.CeirCode.model.Usertype;
+import com.ceir.CeirCode.model.app.Usertype;
 
 public class LoginResponse {
 	private String response;
